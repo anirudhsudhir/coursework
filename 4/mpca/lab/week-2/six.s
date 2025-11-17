@@ -1,0 +1,5 @@
+; 32x50
+  .TEXT
+  MOV R1, #50
+  MOV R2, R1, LSL #5
+  SWI 0x011

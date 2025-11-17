@@ -1,0 +1,8 @@
+
+  .DATA
+MSG: .ASCIZ "World"
+
+  .TEXT
+  LDR R0,=MSG
+  SWINE 0x02
+  SWI 0x011

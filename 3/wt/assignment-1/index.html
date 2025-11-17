@@ -1,0 +1,221 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Olympics Games 2024 Paris</title>
+    <style>
+      @font-face {
+        font-family: Inter;
+        src: url("./inter.ttf");
+      }
+
+      :root {
+        --primary: #778da9;
+        --secondary: #1b263b;
+        --highlight: ;
+        --highlighter: #778da9;
+      }
+
+      body {
+        background-color: var(--primary);
+
+        font-family: "Inter", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 400;
+        font-style: normal;
+
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      header {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      #olympic-logo {
+        height: 50px;
+        width: auto;
+      }
+
+      table {
+        background-color: var(--secondary);
+        color: white;
+        border-collapse: collapse;
+        border: 2px solid var(--highlighter);
+        border-radius: 10px;
+      }
+
+      td,
+      th {
+        border: 2px solid var(--highlighter);
+        border-radius: 10px;
+        padding: 10px 20px;
+      }
+
+      form {
+        background-color: var(--secondary);
+        color: white;
+        border: 2px solid var(--secondary);
+        border-radius: 10px;
+        box-shadow: 0px 0px 5px;
+        margin: auto;
+        padding: 15px 30px;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+      }
+
+      form > ul {
+        margin: 0px;
+        padding: 5px;
+        list-style-type: none;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      form > ul > li {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+
+      form button {
+        background-color: aqua;
+      }
+    </style>
+
+    <script>
+      checkSubmit = () => {
+        let username = document.getElementById("name").value;
+        alert(`Thank you, successfully submitted ${username}!`);
+      };
+    </script>
+  </head>
+
+  <body>
+    <header>
+      <h1>Olympic Games 2024 Paris</h1>
+      <img src="./olympic_logo.png" alt="The Olympics Logo" id="olympic-logo" />
+    </header>
+
+    <!-- Table -->
+    <h2>Olympic Games 2024 Highlights</h2>
+    <table>
+      <tr>
+        <th colspan="2">Event</th>
+        <th>Date</th>
+        <th>Location</th>
+      </tr>
+      <tr>
+        <td colspan="2">Opening Ceremony</td>
+        <td>26 July 2024</td>
+        <td>Paris, France</td>
+      </tr>
+      <tr>
+        <td rowspan="2">Archery</td>
+        <td>Opening day</td>
+        <td>25 July 2024</td>
+        <td>Paris, France</td>
+      </tr>
+      <tr>
+        <td>Final</td>
+        <td>4 August 2024</td>
+        <td>Paris, France</td>
+      </tr>
+      <tr>
+        <td rowspan="2">Athletics</td>
+        <td>Opening day</td>
+        <td>1 August 2024</td>
+        <td>Paris, France</td>
+      </tr>
+      <tr>
+        <td>Final day</td>
+        <td>11 August 2024</td>
+        <td>Paris, France</td>
+      </tr>
+      <tr>
+        <td rowspan="2">Basketball</td>
+        <td>Opening match</td>
+        <td>26 July 2024</td>
+        <td>Paris, France</td>
+      </tr>
+      <tr>
+        <td>Final match</td>
+        <td>11 August 2024</td>
+        <td>Paris, France</td>
+      </tr>
+      <tr>
+        <td colspan="2">Closing ceremony</td>
+        <td>11 August 2024</td>
+        <td>Paris, France</td>
+      </tr>
+    </table>
+
+    <!-- Form -->
+    <h2>Survey Form</h2>
+    <form onsubmit="return checkSubmit()">
+      <ul>
+        <li>
+          <label for="name">Name</label>
+          <input type="text" id="name" placeholder="Enter your name" required />
+        </li>
+        <li>
+          <label for="mail">Email</label>
+          <input
+            type="email"
+            id="mail"
+            placeholder="Enter a valid email ID"
+            required
+          />
+        </li>
+        <li>
+          <label for="phone">Mobile Number</label>
+          <input
+            type="tel"
+            id="phone"
+            placeholder="Enter a valid 10-digit number"
+            pattern="[\d]{10}"
+            required
+          />
+        </li>
+        <li>
+          <label for="gender">Gender</label>
+          <div>
+            <span>
+              <input type="radio" id="male" name="gender" value="Male" />
+              <label for="male">Male</label>
+            </span>
+            <span>
+              <input type="radio" id="female" name="gender" value="Female" />
+              <label for="male">Female</label>
+            </span>
+          </div>
+        </li>
+        <li>
+          <label for="event">Select your favourite event</label>
+          <select name="event" id="event">
+            <option>Archery</option>
+            <option>Athletics</option>
+            <option>Basketball</option>
+          </select>
+        </li>
+        <li>
+          <label for="date">Choose your preferred date</label>
+          <input type="date" id="date" required />
+        </li>
+      </ul>
+      <div class="tos">
+        <input type="checkbox" id="tos-inp" required />
+        <label for="tos-inp">I accept the terms and conditions</label>
+      </div>
+      <div class="form-buttons">
+        <input type="submit" value="Submit form" />
+        <input type="reset" />
+      </div>
+    </form>
+  </body>
+</html>

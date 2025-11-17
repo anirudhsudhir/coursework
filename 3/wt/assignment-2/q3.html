@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Assignment-2 Q3</title>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f4f4f4;
+      }
+      h1 {
+        color: #2c3e50;
+        text-align: center;
+      }
+      form {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+      }
+      label {
+        display: block;
+        margin-bottom: 5px;
+      }
+      input[type="text"],
+      textarea {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+      input[type="submit"] {
+        background-color: green;
+        color: #fff;
+        border: none;
+        margin-top: 10px;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        width: 100%;
+      }
+      #response {
+        margin-top: 20px;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .error {
+        color: #e74c3c;
+        font-weight: bold;
+      }
+      .success {
+        color: #27ae60;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Form Submission</h1>
+    <form id="contactForm">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required />
+
+      <label for="age">Age:</label>
+      <input type="number" id="age" name="age" required />
+
+      <input type="submit" value="Submit" />
+    </form>
+
+    <div id="response"></div>
+
+    <script>
+      $(document).ready(function () {
+        $("#contactForm").submit(function (e) {
+          e.preventDefault();
+
+          var formData = {
+            name: $("#name").val(),
+            age: $("#age").val(),
+          };
+
+          $.ajax({
+            url: "https://jsonplaceholder.typicode.com/posts",
+            type: "POST",
+            data: formData,
+            success: function (response) {
+              $("#response").html(
+                "Form submitted successfully:" +
+                  JSON.stringify(response, null, 2),
+              );
+            },
+            error: function (xhr, status, error) {
+              $("#response").html(
+                '<p class="error">An error occurred: ' + error + "</p>",
+              );
+            },
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

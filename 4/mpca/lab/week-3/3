@@ -1,0 +1,27 @@
+; Sum of digits
+  .DATA
+NUM: .word 123
+
+  .TEXT
+  MOV R0, #0 ; R0 holds sum of digits
+  LDR R1, =NUM
+  LDR R2, [R1]
+
+  MOV R3, R2
+  MOV R4, #1
+
+FACTOR: CMP R4, R3
+  BGT FIN
+  MOV R3, R2
+  MOV R5, #10
+  MUL R4, R5, R4
+
+DIVIDE: CMP R3, R4
+  BLT DIGIT
+  SUB R3, R3, R4
+  B DIVIDE
+
+DIGIT: ADD R0, R0, R3
+  B FACTOR
+
+FIN: SWI 0x011
