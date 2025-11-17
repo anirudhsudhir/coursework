@@ -1,0 +1,12 @@
+[submodule "kernel_module"]
+	path = kernel_module
+	url = git@github.com:anirudhsudhir/kernel_module.git
+[submodule "imperium"]
+	path = imperium
+	url = git@github.com:anirudhsudhir/imperium.git
+[submodule "py-mini-proj"]
+	path = py-mini-proj
+	url = git@github.com:anirudhsudhir/py-mini-proj.git
+[submodule "dbms-project"]
+	path = dbms-project
+	url = git@github.com:anirudhsudhir/dbms-project.git
