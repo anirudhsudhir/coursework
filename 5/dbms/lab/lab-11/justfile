@@ -1,0 +1,12 @@
+set dotenv-load
+
+default:
+  @just --list
+
+# Start postgres on macOS
+start_postgres_server user="$POSTGRES_ADMIN" path="/Library/PostgreSQL/17/data/":
+  sudo -u {{user}} pg_ctl start -D {{path}}
+
+# Stop postgres on macOS
+stop_postgres_server user="$POSTGRES_ADMIN" path="/Library/PostgreSQL/17/data/":
+  sudo -u {{user}} pg_ctl stop -D {{path}}

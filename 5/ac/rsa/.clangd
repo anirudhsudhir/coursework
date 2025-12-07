@@ -1,0 +1,6 @@
+# .clangd file (in your project root)
+CompileFlags:
+  Add:
+    # Get the path from 'brew --prefix openssl'
+    - -I/opt/homebrew/opt/openssl/include
+    # Add any other required flags here

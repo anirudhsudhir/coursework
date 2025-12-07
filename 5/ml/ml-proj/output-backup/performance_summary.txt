@@ -1,0 +1,45 @@
+======================================================================
+QUICK DOODLE CLASSIFIER - PERFORMANCE SUMMARY
+======================================================================
+
+DATASET INFORMATION:
+Classes: cat, tree, car, apple, fish
+Samples per class: 5000
+Total samples: 25000
+Image size: 28x28
+
+VALIDATION SET RESULTS:
+----------------------------------------------------------------------
+Model                         Accuracy     Time (s)      Parameters
+----------------------------------------------------------------------
+Logistic Regression             86.69%        5.04s            3920
+SVM (Linear)                    72.51%       19.42s             N/A
+SVM (Rbf)                       90.75%       29.62s             N/A
+SVM (Poly)                      45.52%       34.46s             N/A
+CNN v1                          95.55%       62.93s           ~180K
+CNN v2                          94.45%       33.22s           ~130K
+CNN v3                          94.56%       27.04s            ~65K
+
+======================================================================
+TEST SET RESULTS (FINAL EVALUATION):
+----------------------------------------------------------------------
+Model                       Test Accuracy
+----------------------------------------------------------------------
+Logistic Regression                87.07%
+SVM (Linear)                       72.88%
+SVM (Rbf)                          91.73%
+SVM (Poly)                         47.44%
+CNN v1                             95.63%
+CNN v2                             94.59%
+CNN v3                             94.64%
+
+======================================================================
+KEY FINDINGS:
+----------------------------------------------------------------------
+Best Validation Accuracy: CNN v1 (95.55%)
+Best Test Accuracy: CNN v1 (95.63%)
+Fastest Training: Logistic Regression (5.04s)
+Best CNN Model: CNN v1 (95.55%)
+Best SVM Kernel: SVM (Rbf) (90.75%)
+
+======================================================================

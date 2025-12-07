@@ -1,0 +1,160 @@
+services:
+  namenode:
+    build: .
+    container_name: hadoop-namenode
+    hostname: namenode
+    command:  >
+      bash -c "
+        chmod +x custom-script-start-namenode.sh &&
+        ./custom-script-start-namenode.sh &&
+        sleep infinity
+      "
+    ports:
+      - 9870:9870
+      - 9000:9000
+    volumes:
+      - namenode-data:/opt/hadoop/data/namenode
+      - hadoop-logs:/opt/hadoop/logs
+      - ./local-data:/opt/local-data
+    environment:
+      - CLUSTER_NAME=hadoop-cluster
+    networks:
+      - hadoop-net
+
+  datanode1:
+    build: .
+    container_name: hadoop-datanode1
+    hostname: datanode1
+    command:  >
+      bash -c "
+        chmod +x custom-script-start-datanode.sh &&
+        ./custom-script-start-datanode.sh &&
+        sleep infinity
+      "
+    volumes:
+      - datanode1-data:/opt/hadoop/data/datanode
+      - hadoop-logs:/opt/hadoop/logs
+      - ./local-data:/opt/local-data
+    depends_on:
+      - namenode
+    networks:
+      - hadoop-net
+
+  datanode2:
+    build: .
+    container_name: hadoop-datanode2
+    hostname: datanode2
+    command:  >
+      bash -c "
+        chmod +x custom-script-start-datanode.sh &&
+        ./custom-script-start-datanode.sh &&
+        sleep infinity
+      "
+    volumes:
+      - datanode2-data:/opt/hadoop/data/datanode
+      - hadoop-logs:/opt/hadoop/logs
+      - ./local-data:/opt/local-data
+    depends_on:
+      - namenode
+    networks:
+      - hadoop-net
+
+  datanode3:
+    build: .
+    container_name: hadoop-datanode3
+    hostname: datanode3
+    command:  >
+      bash -c "
+        chmod +x custom-script-start-datanode.sh &&
+        ./custom-script-start-datanode.sh &&
+        sleep infinity
+      "
+    volumes:
+      - datanode3-data:/opt/hadoop/data/datanode
+      - hadoop-logs:/opt/hadoop/logs
+      - ./local-data:/opt/local-data
+    depends_on:
+      - namenode
+    networks:
+      - hadoop-net
+
+  resourcemanager:
+    build: .
+    container_name: hadoop-resourcemanager
+    hostname: resourcemanager
+    command:  >
+      bash -c "
+        chmod +x custom-script-start-resourcemanager.sh &&
+        ./custom-script-start-resourcemanager.sh &&
+        sleep infinity
+      "
+    ports:
+      - "8088:8088"
+      - "8032:8032"
+    volumes:
+      - hadoop-logs:/opt/hadoop/logs
+      - ./local-data:/opt/local-data
+    depends_on:
+      - namenode
+    networks:
+      - hadoop-net
+
+  nodemanager1:
+    build: .
+    container_name: hadoop-nodemanager1
+    hostname: nodemanager1
+    command:  >
+      bash -c "
+        chmod +x custom-script-start-nodemanager.sh &&
+        ./custom-script-start-nodemanager.sh &&
+        sleep infinity
+      "
+    ports:
+      - "8042:8042"
+    volumes:
+      - nodemanager1-data:/tmp/hadoop-nodemanager
+      - hadoop-logs:/opt/hadoop/logs
+      - ./local-data:/opt/local-data
+    depends_on:
+      - resourcemanager
+    networks:
+      - hadoop-net 
+
+  historyserver:
+    build: .
+    container_name: hadoop-historyserver
+    hostname: historyserver
+    command:  >
+      bash -c "
+        chmod +x custom-script-start-historyserver.sh &&
+        ./custom-script-start-historyserver.sh &&
+        sleep infinity
+      "
+    ports:
+      - "19888:19888"
+    volumes:
+      - hadoop-logs:/opt/hadoop/logs
+      - ./local-data:/opt/local-data
+    depends_on:
+      - namenode
+      - datanode1
+    networks:
+      - hadoop-net
+
+volumes:
+  namenode-data:
+    driver: local
+  datanode1-data:
+    driver: local
+  datanode2-data:
+    driver: local
+  datanode3-data:
+    driver: local
+  nodemanager1-data:
+    driver: local
+  hadoop-logs:
+    driver: local
+
+networks:
+  hadoop-net:
+    driver: bridge
